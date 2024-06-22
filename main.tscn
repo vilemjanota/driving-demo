@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cutb4e0gsavac"]
+[gd_scene load_steps=6 format=3 uid="uid://cutb4e0gsavac"]
 
+[ext_resource type="Texture2D" uid="uid://cusbb6mgota64" path="res://icon.svg" id="1_50f1v"]
 [ext_resource type="PackedScene" uid="uid://djgxnh6id4l3p" path="res://player.tscn" id="1_ti3vy"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb7rg"]
+albedo_texture = ExtResource("1_50f1v")
+
 [sub_resource type="BoxMesh" id="BoxMesh_6u3dt"]
-size = Vector3(60, 2, 60)
+material = SubResource("StandardMaterial3D_vb7rg")
+size = Vector3(500, 2, 500)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2bs3u"]
-size = Vector3(60, 2, 60)
+size = Vector3(500, 2, 500)
 
 [node name="Main" type="Node"]
 
@@ -22,9 +27,4 @@ shape = SubResource("BoxShape3D_2bs3u")
 transform = Transform3D(1, 0, 0, 0, 0.533555, 0.845765, 0, -0.845765, 0.533555, 0, 8.46448, 2.69035)
 
 [node name="Player" parent="." instance=ExtResource("1_ti3vy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
-
-[node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.5476, 6.55122, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.67997, 0)
