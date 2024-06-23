@@ -11,11 +11,11 @@ Build the project from the Godot editor or using the command line with dotnet bu
 In the Godot editor, press the 'Run Project' button to start the game.
 Alternatively, you can export the project to your preferred platform and run the executable.
 ## Controls
-Move Forward: W
-Move Backward: S
-Turn Left: A
-Turn Right: D
-Brake/Drift: Spacebar
+- Move Forward: W
+- Move Backward: S
+- Turn Left: A
+- Turn Right: D
+- Brake/Drift: Spacebar
 
 
 
