@@ -8,16 +8,23 @@ public partial class Player : CharacterBody3D
 	public int MaxSpeed { get; set; } = 30;
 	[Export]
 	public int Acceleration { get; set; } = 10;
-	
+	[Export]
+	public float TurnRotation { get; set; } = 0.05f * 0.017f;
+	[Export]
+	public float DriftRotation { get; set; } = 0.2f * 0.017f;
+
 	private float Speed;
-	private bool MovingForward = true;
 	private Vector3 _targetVelocity = Vector3.Zero;
 	private Node3D CameraPivot;
 	private Node3D Pivot;
+	private Node3D Model;
+	private bool Drift = false;
+	
 	public override void _Ready()
 	{
 		Pivot = GetNode<Node3D>("Pivot");
 		CameraPivot = GetNode<Node3D>("CameraPivot");
+		Model = Pivot.GetNode<Node3D>("Model");
 	}
 	
 	public void UpdateCamera(double delta)
@@ -32,14 +39,10 @@ public partial class Player : CharacterBody3D
 		CameraPivot.Rotation = rotation;
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{		
-		UpdateCamera(delta);
-		var direction = Vector3.Zero;
-		direction.Z = -1;
-		if (Input.IsActionPressed("move_forward"))
+	public void UpdateSpeed()
+	{
+		if(Input.IsActionPressed("move_forward"))
 		{
-			MovingForward = true;
 			if(Speed < MaxSpeed)
 			{
 				Speed += Acceleration;
@@ -49,9 +52,8 @@ public partial class Player : CharacterBody3D
 				Speed = MaxSpeed;
 			}
 		}
-		if (Input.IsActionPressed("move_back"))
+		if(Input.IsActionPressed("move_back"))
 		{
-			MovingForward = false;
 			if(Speed > -MaxSpeed/2)
 			{
 				Speed -= Acceleration/2;
@@ -61,15 +63,7 @@ public partial class Player : CharacterBody3D
 				Speed = -MaxSpeed/2;
 			}
 		}
-		if (Input.IsActionPressed("move_right"))
-		{
-			GetNode<Node3D>("Pivot").RotateY(Speed * 0.05f * -0.017f);
-		}
-		if (Input.IsActionPressed("move_left"))
-		{
-			GetNode<Node3D>("Pivot").RotateY(Speed * 0.05f * 0.017f);
-		}
-		if (Input.IsActionPressed("brake"))
+		if(Input.IsActionPressed("brake"))
 		{
 			if(Speed>0)
 			{
@@ -88,17 +82,61 @@ public partial class Player : CharacterBody3D
 		{
 			Speed += 0.1f;
 		}
-		if (direction != Vector3.Zero)
+		if(Drift)
 		{
-			direction = direction.Normalized();
-			direction = direction.Rotated(new Vector3(0, 1, 0),GetNode<Node3D>("Pivot").Rotation.Y);
+			Speed -= 3;
 		}
+	}
+
+	public Vector3 UpdateDirection()
+	{
+		var Direction = new Vector3(0,0,-1);
+		if(Input.IsActionPressed("move_right"))
+		{
+			Pivot.RotateY(Speed * -TurnRotation);
+			// Enable drift and apply drift rotation when moving right and braking
+			if (Input.IsActionPressed("brake") && !Drift)
+			{
+				Drift = true;
+				Model.RotateY(Speed * -DriftRotation);
+			}
+		}
+		if(Input.IsActionPressed("move_left"))
+		{
+			Pivot.RotateY(Speed * TurnRotation);
+			// Enable drift and apply drift rotation when moving left and braking
+			if(Input.IsActionPressed("brake") && !Drift)
+			{
+				Drift = true;
+				Model.RotateY(Speed * DriftRotation);
+			}
+		}
+		// Reset drift state and model rotation when brake is released
+		if(!Input.IsActionPressed("brake") && Drift)
+		{
+			Drift = false;
+			Model.Rotation = new Vector3(0,0,0);
+		}
+		if(Direction != Vector3.Zero)
+		{
+			// Normalize and rotate direction vector based on pivot rotation
+			Direction = Direction.Normalized();
+			Direction = Direction.Rotated(new Vector3(0, 1, 0),Pivot.Rotation.Y);
+		}
+		return Direction;
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{		
+		UpdateCamera(delta);
+		UpdateSpeed();
+		var Direction = UpdateDirection();
 
 		// Ground velocity
-		_targetVelocity.X = direction.X * Speed;
-		_targetVelocity.Z = direction.Z * Speed;
-		// Vertical velocity
-		if (!IsOnFloor()) // If in the air, fall towards the floor. Literally gravity
+		_targetVelocity.X = Direction.X * Speed;
+		_targetVelocity.Z = Direction.Z * Speed;
+		// Apply gravity if player is not on the floor
+		if(!IsOnFloor())
 		{
 			_targetVelocity.Y -= FallAcceleration * (float)delta;
 		}
