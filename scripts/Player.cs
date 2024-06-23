@@ -12,9 +12,29 @@ public partial class Player : CharacterBody3D
 	private float Speed;
 	private bool MovingForward = true;
 	private Vector3 _targetVelocity = Vector3.Zero;
+	private Node3D CameraPivot;
+	private Node3D Pivot;
+	public override void _Ready()
+	{
+		Pivot = GetNode<Node3D>("Pivot");
+		CameraPivot = GetNode<Node3D>("CameraPivot");
+	}
+	
+	public void UpdateCamera(double delta)
+	{
+		//Follow the player
+		CameraPivot.GlobalPosition = CameraPivot.GlobalPosition.Lerp(Pivot.GlobalPosition,(float)delta * 6.0f);
+		//Delayed rotation
+		Vector3 rotation = CameraPivot.Rotation;
+		rotation.X = Mathf.LerpAngle(rotation.X, Pivot.Rotation.X, 2.0f * (float)delta);
+		rotation.Y = Mathf.LerpAngle(rotation.Y, Pivot.Rotation.Y, 2.0f * (float)delta);
+		rotation.Z = Mathf.LerpAngle(rotation.Z, Pivot.Rotation.Z, 2.0f * (float)delta);
+		CameraPivot.Rotation = rotation;
+	}
 
 	public override void _PhysicsProcess(double delta)
-	{
+	{		
+		UpdateCamera(delta);
 		var direction = Vector3.Zero;
 		direction.Z = -1;
 		if (Input.IsActionPressed("move_forward"))
