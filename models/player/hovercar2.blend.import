@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b7ueqncrkgtwh"
-path="res://.godot/imported/player.blend-e2c223f19bf3423a1599f27073b6610f.scn"
+uid="uid://bc3bedjewtnle"
+path="res://.godot/imported/hovercar2.blend-eec22ed7ed32a9e574c84ee08c4c129e.scn"
 
 [deps]
 
-source_file="res://models/player.blend"
-dest_files=["res://.godot/imported/player.blend-e2c223f19bf3423a1599f27073b6610f.scn"]
+source_file="res://models/player/hovercar2.blend"
+dest_files=["res://.godot/imported/hovercar2.blend-eec22ed7ed32a9e574c84ee08c4c129e.scn"]
 
 [params]
 
