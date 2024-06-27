@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cutb4e0gsavac"]
+[gd_scene load_steps=14 format=3 uid="uid://cutb4e0gsavac"]
 
 [ext_resource type="Texture2D" uid="uid://buryycqs08b7x" path="res://assets/asphalt_road.png" id="1_lgvsf"]
 [ext_resource type="PackedScene" uid="uid://djgxnh6id4l3p" path="res://scenes/player.tscn" id="1_ti3vy"]
 [ext_resource type="PackedScene" uid="uid://b7gx2fiaov36g" path="res://scenes/building.tscn" id="3_fn621"]
 [ext_resource type="Texture2D" uid="uid://bn24rbol33plt" path="res://assets/sky.jpg" id="4_leppg"]
 [ext_resource type="PackedScene" uid="uid://drfisho6ffssc" path="res://scenes/finish.tscn" id="5_wiu53"]
+[ext_resource type="PackedScene" uid="uid://dtqw0qke72iqj" path="res://scenes/ui.tscn" id="6_d8ax5"]
+[ext_resource type="Script" path="res://scripts/UI.cs" id="7_nsa8g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afq6b"]
 albedo_texture = ExtResource("1_lgvsf")
@@ -123,3 +125,8 @@ environment = SubResource("Environment_2l5hb")
 
 [node name="Finish" parent="." instance=ExtResource("5_wiu53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3476, 1, 128.206)
+
+[node name="UI" parent="." instance=ExtResource("6_d8ax5")]
+script = ExtResource("7_nsa8g")
+
+[connection signal="PlayerTouchedFinish" from="Finish" to="UI" method="_on_finish_player_touched_finish"]

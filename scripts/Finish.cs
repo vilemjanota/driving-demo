@@ -3,15 +3,16 @@ using System;
 
 public partial class Finish : Area3D
 {
+	// Define a signal named 'player_touched_finish'
+	[Signal]
+	public delegate void PlayerTouchedFinishEventHandler();
+
 	private void _on_body_entered(Node3D body)
 	{
-		if (body is Player) // Assuming 'Player' is the class name of your player character
+		if (body is Player)
 		{
-			GD.Print("Player has touched the finish object!");
+			// Emit the 'player_touched_finish' signal
+			EmitSignal(nameof(PlayerTouchedFinish));
 		}
 	}
-	
 }
-
-
-
