@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://drfisho6ffssc"]
+
+[ext_resource type="Script" path="res://scripts/Finish.cs" id="1_m6lve"]
+[ext_resource type="PackedScene" uid="uid://b01lob000e0mi" path="res://models/arrow/arrow.blend" id="2_sblym"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8xewf"]
+size = Vector3(15, 20, 15)
+
+[node name="Finish" type="Area3D"]
+script = ExtResource("1_m6lve")
+
+[node name="arrow" parent="." instance=ExtResource("2_sblym")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.71175, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.75437, 0)
+shape = SubResource("BoxShape3D_8xewf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
