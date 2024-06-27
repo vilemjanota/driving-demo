@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cutb4e0gsavac"]
+[gd_scene load_steps=12 format=3 uid="uid://cutb4e0gsavac"]
 
 [ext_resource type="Texture2D" uid="uid://buryycqs08b7x" path="res://assets/asphalt_road.png" id="1_lgvsf"]
-[ext_resource type="PackedScene" uid="uid://djgxnh6id4l3p" path="res://player.tscn" id="1_ti3vy"]
-[ext_resource type="PackedScene" uid="uid://b7gx2fiaov36g" path="res://building.tscn" id="3_fn621"]
+[ext_resource type="PackedScene" uid="uid://djgxnh6id4l3p" path="res://scenes/player.tscn" id="1_ti3vy"]
+[ext_resource type="PackedScene" uid="uid://b7gx2fiaov36g" path="res://scenes/building.tscn" id="3_fn621"]
 [ext_resource type="Texture2D" uid="uid://bn24rbol33plt" path="res://assets/sky.jpg" id="4_leppg"]
+[ext_resource type="PackedScene" uid="uid://drfisho6ffssc" path="res://scenes/finish.tscn" id="5_wiu53"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afq6b"]
 albedo_texture = ExtResource("1_lgvsf")
@@ -28,7 +29,7 @@ background_mode = 2
 sky = SubResource("Sky_u22ne")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.12
+ambient_light_energy = 0.52
 
 [node name="Main" type="Node"]
 
@@ -44,7 +45,7 @@ shape = SubResource("BoxShape3D_2bs3u")
 transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 0, 139.569, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_ti3vy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.67997, 171.947)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.59816, 171.947)
 
 [node name="BuildingRow" type="Node3D" parent="."]
 
@@ -119,3 +120,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.577, 1, 250)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2l5hb")
+
+[node name="Finish" parent="." instance=ExtResource("5_wiu53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.3476, 1, 128.206)
