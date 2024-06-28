@@ -21,4 +21,11 @@ public partial class UI : Control
 		GetNode<Label>("Win").Text = "You win!";
 		finish = true;
 	}
+	private void _on_quit_pressed()
+	{
+		GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+	}
 }
+
+
+

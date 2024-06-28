@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://t1ev1uu1t4f3"]
+
+[ext_resource type="Texture2D" uid="uid://buryycqs08b7x" path="res://assets/asphalt_road.png" id="1_fdux0"]
+[ext_resource type="PackedScene" uid="uid://djgxnh6id4l3p" path="res://scenes/player.tscn" id="2_n1h1r"]
+[ext_resource type="PackedScene" uid="uid://b7gx2fiaov36g" path="res://scenes/building.tscn" id="3_5mtvh"]
+[ext_resource type="Texture2D" uid="uid://bn24rbol33plt" path="res://assets/sky.jpg" id="4_77k24"]
+[ext_resource type="PackedScene" uid="uid://drfisho6ffssc" path="res://scenes/finish.tscn" id="5_ghs30"]
+[ext_resource type="PackedScene" uid="uid://dtqw0qke72iqj" path="res://scenes/ui.tscn" id="6_60g8i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afq6b"]
+albedo_texture = ExtResource("1_fdux0")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_obg8j"]
+material = SubResource("StandardMaterial3D_afq6b")
+size = Vector3(500, 2, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0erb6"]
+size = Vector3(500, 2, 500)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ndo8v"]
+panorama = ExtResource("4_77k24")
+
+[sub_resource type="Sky" id="Sky_u22ne"]
+sky_material = SubResource("PanoramaSkyMaterial_ndo8v")
+
+[sub_resource type="Environment" id="Environment_tqah2"]
+background_mode = 2
+sky = SubResource("Sky_u22ne")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.52
+
+[node name="Level0" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_obg8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_0erb6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 0, 139.569, 0)
+
+[node name="Player" parent="." instance=ExtResource("2_n1h1r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.59816, 171.947)
+
+[node name="BuildingRow" type="Node3D" parent="."]
+
+[node name="large_buildingA3" parent="BuildingRow" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1, 250)
+
+[node name="large_buildingA2" parent="BuildingRow" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 250)
+
+[node name="large_buildingA4" parent="BuildingRow" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.652, 1, 250)
+
+[node name="large_buildingA5" parent="BuildingRow" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.652, 1, 250)
+
+[node name="large_buildingA6" parent="BuildingRow" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.577, 1, 250)
+
+[node name="BuildingRow2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -502.703)
+
+[node name="large_buildingA3" parent="BuildingRow2" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1, 250)
+
+[node name="large_buildingA2" parent="BuildingRow2" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 250)
+
+[node name="large_buildingA4" parent="BuildingRow2" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.652, 1, 250)
+
+[node name="large_buildingA5" parent="BuildingRow2" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.652, 1, 250)
+
+[node name="large_buildingA6" parent="BuildingRow2" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.577, 1, 250)
+
+[node name="BuildingRow3" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.3594, 0, -10.2057)
+
+[node name="large_buildingA3" parent="BuildingRow3" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1, 250)
+
+[node name="large_buildingA2" parent="BuildingRow3" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 250)
+
+[node name="large_buildingA4" parent="BuildingRow3" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.652, 1, 250)
+
+[node name="large_buildingA5" parent="BuildingRow3" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.652, 1, 250)
+
+[node name="large_buildingA6" parent="BuildingRow3" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.577, 1, 250)
+
+[node name="BuildingRow4" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -517.23, 0, -13.835)
+
+[node name="large_buildingA3" parent="BuildingRow4" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 1, 250)
+
+[node name="large_buildingA2" parent="BuildingRow4" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 250)
+
+[node name="large_buildingA4" parent="BuildingRow4" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.652, 1, 250)
+
+[node name="large_buildingA5" parent="BuildingRow4" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.652, 1, 250)
+
+[node name="large_buildingA6" parent="BuildingRow4" instance=ExtResource("3_5mtvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 200.577, 1, 250)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tqah2")
+
+[node name="Finish" parent="." instance=ExtResource("5_ghs30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25879, 1, -215.469)
+
+[node name="UI" parent="." instance=ExtResource("6_60g8i")]
+
+[connection signal="PlayerTouchedFinish" from="Finish" to="UI" method="_on_finish_player_touched_finish"]

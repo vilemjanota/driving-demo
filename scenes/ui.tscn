@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dtqw0qke72iqj"]
+[gd_scene load_steps=2 format=3 uid="uid://dtqw0qke72iqj"]
+
+[ext_resource type="Script" path="res://scripts/UI.cs" id="1_q71ya"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -6,7 +8,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
-size_flags_horizontal = 4
+script = ExtResource("1_q71ya")
 
 [node name="Timer" type="Label" parent="."]
 layout_mode = 0
@@ -19,3 +21,13 @@ offset_left = -85.0
 offset_top = 292.0
 offset_right = 126.0
 offset_bottom = 315.0
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 10.0
+offset_right = 542.0
+offset_bottom = 41.0
+text = "Quit"
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
