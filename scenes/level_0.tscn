@@ -44,6 +44,7 @@ shape = SubResource("BoxShape3D_0erb6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 0, 139.569, 0)
+shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_n1h1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.59816, 171.947)
