@@ -7,6 +7,11 @@ public partial class Finish : Area3D
 	[Signal]
 	public delegate void PlayerTouchedFinishEventHandler();
 
+	public override void _Ready()
+	{
+		GetNode<AnimationPlayer>("AnimationPlayer").Play("rotate");
+	}
+
 	private void _on_body_entered(Node3D body)
 	{
 		if (body is Player)

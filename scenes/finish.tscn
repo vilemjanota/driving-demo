@@ -1,10 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://drfisho6ffssc"]
+[gd_scene load_steps=6 format=3 uid="uid://drfisho6ffssc"]
 
 [ext_resource type="Script" path="res://scripts/Finish.cs" id="1_m6lve"]
 [ext_resource type="PackedScene" uid="uid://b01lob000e0mi" path="res://models/arrow/arrow.blend" id="2_sblym"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8xewf"]
 size = Vector3(15, 20, 15)
+
+[sub_resource type="Animation" id="Animation_gbrlv"]
+resource_name = "rotate"
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("arrow")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0.707107, 0, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k385f"]
+_data = {
+"rotate": SubResource("Animation_gbrlv")
+}
 
 [node name="Finish" type="Area3D"]
 script = ExtResource("1_m6lve")
@@ -15,5 +31,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.71175, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.75437, 0)
 shape = SubResource("BoxShape3D_8xewf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k385f")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
