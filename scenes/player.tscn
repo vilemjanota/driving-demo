@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://djgxnh6id4l3p"]
+[gd_scene load_steps=9 format=3 uid="uid://djgxnh6id4l3p"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_i6813"]
 [ext_resource type="PackedScene" uid="uid://bc3bedjewtnle" path="res://models/player/hovercar2.blend" id="2_bos6e"]
@@ -6,12 +6,51 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_bsreo"]
 size = Vector3(6, 4.5, 11)
 
+[sub_resource type="Animation" id="Animation_5jjnw"]
+resource_name = "DriftLeft"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_t7pmt"]
+resource_name = "DriftRight"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_368qp"]
+resource_name = "StartDriftLeft"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Model")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0.382683, 0, 0.92388)
+
+[sub_resource type="Animation" id="Animation_dddyo"]
+resource_name = "StartDriftRight"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Model")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, -0.382683, 0, 0.92388)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pl860"]
+_data = {
+"DriftLeft": SubResource("Animation_5jjnw"),
+"DriftRight": SubResource("Animation_t7pmt"),
+"StartDriftLeft": SubResource("Animation_368qp"),
+"StartDriftRight": SubResource("Animation_dddyo")
+}
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_i6813")
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Model" parent="Pivot" instance=ExtResource("2_bos6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.572633, -0.286194)
@@ -22,3 +61,8 @@ top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 5, 10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pl860")
+}
