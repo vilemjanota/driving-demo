@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://djgxnh6id4l3p"]
+[gd_scene load_steps=10 format=3 uid="uid://djgxnh6id4l3p"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_i6813"]
 [ext_resource type="PackedScene" uid="uid://bc3bedjewtnle" path="res://models/player/hovercar2.blend" id="2_bos6e"]
+[ext_resource type="AudioStream" uid="uid://vh7cri1nybke" path="res://assets/synth.wav" id="3_v20r3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bsreo"]
 size = Vector3(6, 4.5, 11)
@@ -44,13 +45,16 @@ _data = {
 "StartDriftRight": SubResource("Animation_dddyo")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AudioPlayer", "CameraPivot", "Pivot", "AnimationPlayer")]
 script = ExtResource("1_i6813")
+AudioPlayer = NodePath("AudioPlayer")
+CameraPivot = NodePath("CameraPivot")
+Pivot = NodePath("Pivot")
+AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="Pivot" type="Node3D" parent="."]
 
 [node name="Model" parent="Pivot" instance=ExtResource("2_bos6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.572633, -0.286194)
@@ -66,3 +70,7 @@ transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0,
 libraries = {
 "": SubResource("AnimationLibrary_pl860")
 }
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_v20r3")
+volume_db = 1.0
