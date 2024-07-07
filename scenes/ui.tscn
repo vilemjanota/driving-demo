@@ -2,18 +2,28 @@
 
 [ext_resource type="Script" path="res://scripts/UI.cs" id="1_q71ya"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("TimerLabel", "CountdownLabel")]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
 script = ExtResource("1_q71ya")
+TimerLabel = NodePath("TimerLabel")
+CountdownLabel = NodePath("CountdownLabel")
 
-[node name="Timer" type="Label" parent="."]
+[node name="TimerLabel" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="CountdownLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 184.0
+offset_right = 93.0
+offset_bottom = 269.0
+text = "no"
 
 [node name="Win" type="Label" parent="."]
 layout_mode = 0

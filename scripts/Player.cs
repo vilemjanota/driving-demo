@@ -25,6 +25,7 @@ public partial class Player : CharacterBody3D
 	private const float ANGLE  = 0.017f;
 	private float speed;
 	private DriftHandler driftHandler;
+	private bool canMove = false;
 
 	private bool Drift = false;
 	
@@ -45,8 +46,15 @@ public partial class Player : CharacterBody3D
 		CameraPivot.Rotation = rotation;
 	}
 
+	private void OnCountdownFinished()
+	{
+		canMove = true; // Enable movement when the countdown is finished
+	}
+
 	public void UpdateSpeed()
 	{
+		if (!canMove) return; // Prevent movement if the countdown is not finished
+
 		if(Input.IsActionPressed("move_forward"))
 		{
 			if(speed < MaxSpeed)

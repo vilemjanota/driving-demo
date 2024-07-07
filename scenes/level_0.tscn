@@ -129,3 +129,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25879, 1, -215.469)
 [node name="UI" parent="." instance=ExtResource("6_60g8i")]
 
 [connection signal="PlayerTouchedFinish" from="Finish" to="UI" method="_on_finish_player_touched_finish"]
+[connection signal="CountdownFinished" from="UI" to="Player" method="OnCountdownFinished"]
