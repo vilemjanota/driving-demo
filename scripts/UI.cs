@@ -9,9 +9,11 @@ public partial class UI : Control
 	public delegate void CountdownFinishedEventHandler();
 
 	[Export]
-	public Label TimerLabel;
+	public Label TimerLabel { get; set; }
 	[Export]
-	public Label CountdownLabel;
+	public Label CountdownLabel { get; set; }
+	[Export]
+	public AudioStreamPlayer AudioPlayer { get; set; }
 
 	private float time = 0;
 	private bool playing = false;
@@ -42,10 +44,13 @@ public partial class UI : Control
 	private async void Countdown()
 	{
 		CountdownLabel.Text = "3";
+		AudioPlayer.Play();
 		await Task.Delay(TimeSpan.FromMilliseconds(1000));
 		CountdownLabel.Text = "2";
+		AudioPlayer.Play();
 		await Task.Delay(TimeSpan.FromMilliseconds(1000));
 		CountdownLabel.Text = "1";
+		AudioPlayer.Play();
 		await Task.Delay(TimeSpan.FromMilliseconds(1000));
 		CountdownLabel.Visible = false;
 		playing = true;

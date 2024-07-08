@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtqw0qke72iqj"]
+[gd_scene load_steps=3 format=3 uid="uid://dtqw0qke72iqj"]
 
 [ext_resource type="Script" path="res://scripts/UI.cs" id="1_q71ya"]
+[ext_resource type="AudioStream" uid="uid://dvt8offnlyl28" path="res://assets/blipSelect.wav" id="2_5ooej"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("TimerLabel", "CountdownLabel")]
+[node name="Control" type="Control" node_paths=PackedStringArray("TimerLabel", "CountdownLabel", "AudioPlayer")]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -11,6 +12,7 @@ grow_horizontal = 2
 script = ExtResource("1_q71ya")
 TimerLabel = NodePath("TimerLabel")
 CountdownLabel = NodePath("CountdownLabel")
+AudioPlayer = NodePath("AudioPlayer")
 
 [node name="TimerLabel" type="Label" parent="."]
 layout_mode = 0
@@ -39,5 +41,9 @@ offset_top = 10.0
 offset_right = 542.0
 offset_bottom = 41.0
 text = "Quit"
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5ooej")
+volume_db = -4.0
 
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
