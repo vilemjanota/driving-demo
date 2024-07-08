@@ -15,11 +15,11 @@ public partial class Player : CharacterBody3D
 	[Export]
 	public AudioStreamPlayer AudioPlayer { get; set; }
 	[Export]
-	public Node3D CameraPivot;
+	public Node3D CameraPivot { get; set; }
 	[Export]
-	public Node3D Pivot;
+	public Node3D Pivot { get; set; }
 	[Export]
-	public AnimationPlayer AnimationPlayer;
+	public AnimationPlayer AnimationPlayer { get; set; }
 
 	private Vector3 _targetVelocity = Vector3.Zero;
 	private const float ANGLE  = 0.017f;
@@ -124,7 +124,7 @@ public partial class Player : CharacterBody3D
 
 	void UpdateSound()
 	{
-		AudioPlayer.PitchScale = 0.03f * Math.Abs(speed);
+		AudioPlayer.PitchScale = 0.03f * Math.Abs(speed) + 0.5f;
 		if(Math.Abs(speed) > 0.1 && !AudioPlayer.HasStreamPlayback())
 		{
 			AudioPlayer.Play();
