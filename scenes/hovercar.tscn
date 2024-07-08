@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://1e130wrol8f0"]
+
+[ext_resource type="PackedScene" uid="uid://bc3bedjewtnle" path="res://models/player/hovercar2.blend" id="1_bo624"]
+[ext_resource type="Material" uid="uid://bhehu1y1o6ov0" path="res://assets/wheel_material.tres" id="2_4tedk"]
+
+[node name="hovercar2" instance=ExtResource("1_bo624")]
+
+[node name="wheel fl" parent="." index="1"]
+surface_material_override/1 = ExtResource("2_4tedk")
+
+[node name="wheel rr" parent="." index="2"]
+surface_material_override/1 = ExtResource("2_4tedk")
+
+[node name="wheel fr" parent="." index="3"]
+surface_material_override/1 = ExtResource("2_4tedk")
+
+[node name="wheel rl" parent="." index="4"]
+surface_material_override/1 = ExtResource("2_4tedk")

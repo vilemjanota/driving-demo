@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://djgxnh6id4l3p"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_i6813"]
-[ext_resource type="PackedScene" uid="uid://bc3bedjewtnle" path="res://models/player/hovercar2.blend" id="2_bos6e"]
+[ext_resource type="PackedScene" uid="uid://1e130wrol8f0" path="res://scenes/hovercar.tscn" id="2_rqu6e"]
 [ext_resource type="AudioStream" uid="uid://vh7cri1nybke" path="res://assets/synth.wav" id="3_v20r3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bsreo"]
@@ -54,7 +54,8 @@ AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="Pivot" type="Node3D" parent="."]
 
-[node name="Model" parent="Pivot" instance=ExtResource("2_bos6e")]
+[node name="Model" parent="Pivot" instance=ExtResource("2_rqu6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.572633, -0.286194)
